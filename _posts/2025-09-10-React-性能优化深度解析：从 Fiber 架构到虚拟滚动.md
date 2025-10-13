@@ -203,6 +203,7 @@ const endWithOverscan = Math.min(totalItems - 1, endIndex + overscan);
 
 关键技巧：用空 div 撑开总高度，让滚动条显示正确
 
+{% raw %}
 ```jsx
 function VirtualList({ items, itemHeight, containerHeight }) {
     const [scrollTop, setScrollTop] = useState(0);
@@ -230,6 +231,7 @@ function VirtualList({ items, itemHeight, containerHeight }) {
     );
 }
 ```
+{% endraw %}
 
 **DOM 结构**：
 ```html
@@ -247,6 +249,7 @@ function VirtualList({ items, itemHeight, containerHeight }) {
 
 ### 2.3 完整实现示例
 
+{% raw %}
 ```jsx
 import React, { useState, useRef } from 'react';
 
@@ -296,6 +299,7 @@ function VirtualList({
     );
 }
 ```
+{% endraw %}
 
 ### 2.4 性能优化技巧
 
@@ -311,6 +315,7 @@ const handleScroll = (e) => {
 ```
 
 **2. 使用 CSS transform（GPU 加速）**
+{% raw %}
 ```jsx
 // ✅ 好
 style={{ transform: `translateY(${offsetY}px)` }}
@@ -318,13 +323,16 @@ style={{ transform: `translateY(${offsetY}px)` }}
 // ❌ 差（触发 layout）
 style={{ top: `${offsetY}px` }}
 ```
+{% endraw %}
 
 **3. 避免频繁重新渲染**
+{% raw %}
 ```jsx
 const RowComponent = React.memo(({ data }) => {
     return <div>{data}</div>;
 });
 ```
+{% endraw %}
 
 ## 三、两者结合：最佳实践
 
